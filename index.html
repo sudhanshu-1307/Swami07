@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Valentine ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+ margin:0;
+ font-family:'Segoe UI',sans-serif;
+ background:linear-gradient(135deg,#ff4d6d,#ff9a9e);
+ color:#fff;
+ text-align:center;
+}
+.container{
+ max-width:500px;
+ margin:auto;
+ padding:20px;
+}
+.card{
+ background:rgba(255,255,255,0.15);
+ border-radius:20px;
+ padding:20px;
+ margin-top:20px;
+ box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+input{
+ width:90%;
+ padding:12px;
+ border:none;
+ border-radius:25px;
+ outline:none;
+ text-align:center;
+ margin-top:10px;
+}
+button{
+ margin-top:15px;
+ padding:12px 30px;
+ border:none;
+ border-radius:25px;
+ background:#fff;
+ color:#ff4d6d;
+ font-weight:bold;
+ cursor:pointer;
+}
+img{
+ width:100%;
+ border-radius:20px;
+ margin-top:15px;
+}
+.heart{
+ position:fixed;
+ bottom:-20px;
+ font-size:20px;
+ animation:floatUp 6s linear infinite;
+}
+@keyframes floatUp{
+ 0%{transform:translateY(0);opacity:1}
+ 100%{transform:translateY(-100vh);opacity:0}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Happy Valentine’s Day ❤️</h1>
+<p>Only correct answers unlock the surprises 💕</p>
+<div class="card" id="box"></div>
+</div>
+<script>
+let step=0;
+const questions=[
+ {q:" Will you be my Valentine? ",a:"yes"},
+ {q:" May I hold your hand and call it my Valentine’s miracle?🌹 ",a:"yes"},
+ {q:" first time jab mile Tha to kaun sa color ka dress pahan ke Aaye Tha ham dono ? ",a:"black"},
+ {q:" Agar hug chahiye ho to kisko yaad karti ho?",a:"swami"},
+ {q:"5. Kya tum mujhe hamesha apna rakhna chahogi?",a:"haan"}
+];
+function showQuestion(){
+ document.getElementById('box').innerHTML=`<h3>${questions[step].q}</h3><input id='ans' placeholder='Type answer…'><br><button onclick='check()'>Submit</button>`;
+}
+function check(){
+ let v=document.getElementById('ans').value.toLowerCase();
+ if(v.includes(questions[step].a)){
+   step++;
+   if(step<5){showQuestion();}
+   else{showGallery();}
+ }
+}
+function showGallery(){
+ document.getElementById('box').innerHTML=`
+ <h2>Memories 💖</h2>
+ <p>love you Yogita ji / baby / baachi 🐣</p>
+ <img src='memory/img1.png'>
+ <img src='memory/img2.png'>
+ <img src='memory/img3.png'>
+ <img src='memory/img4.png'>
+ <img src='memory/img5.png'>
+ <img src='memory/img6.png'>
+ <h3>💌 Cute Message</h3>
+ <p>Tum meri aadat nahi, meri zarurat ban chuki ho. 
+ Is Valentine sirf ek baat — main tumhara hoon, poori dil se ❤️</p>`;
+}
+showQuestion();
+setInterval(()=>{
+ let h=document.createElement('div');
+ h.className='heart';
+ h.innerHTML='❤️';
+ h.style.left=Math.random()*100+'vw';
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),6000);
+},500);
+</script>
+</body>
+</html>
